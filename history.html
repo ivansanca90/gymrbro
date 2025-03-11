@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="description" content="GYMBRO - La tua app per il fitness">
+    
+    <title>GYMBRO - Storico</title>
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="header safe-area-top">
+            <div class="back-button" id="back-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8fff46" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M15 18l-6-6 6-6"/>
+                </svg>
+            </div>
+            <h1 class="workout-title">Storico Allenamenti</h1>
+            <div style="width: 44px;"></div> <!-- Placeholder per il bilanciamento -->
+        </div>
+        
+        <!-- Filtro per allenamento -->
+        <div class="filter-container">
+            <label class="filter-label">Filtra per allenamento:</label>
+            <select id="workout-filter" class="filter-select">
+                <option value="">Tutti gli allenamenti</option>
+                <!-- Le opzioni verranno aggiunte dinamicamente -->
+            </select>
+        </div>
+        
+        <div class="history-list" id="history-list">
+            <!-- Gli elementi dello storico verranno aggiunti qui dinamicamente -->
+        </div>
+    </div>
+    
+    <!-- Modal dettaglio sessione -->
+    <div class="modal" id="session-detail-modal">
+        <div class="modal-content">
+            <div class="modal-title">Dettagli Sessione</div>
+            <div class="session-date" id="session-date"></div>
+            <div class="session-details" id="session-details">
+                <!-- I dettagli della sessione verranno aggiunti qui -->
+            </div>
+            <div class="button-container">
+                <button class="modal-button cancel-button" id="close-detail-button">Chiudi</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="history.js"></script>
+</body>
+</html>

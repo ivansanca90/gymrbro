@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="description" content="GYMBRO - La tua app per il fitness">
+    
+    <title>GYMBRO - Esercizio</title>
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="header safe-area-top">
+            <div class="back-button" id="back-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8fff46" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M15 18l-6-6 6-6"/>
+                </svg>
+            </div>
+            <h1 class="workout-title" id="workout-title">Petto e Braccia</h1>
+            <div class="add-button" id="add-exercise-button">
+                <span>+</span>
+            </div>
+        </div>
+        
+        <div class="exercise-container" id="exercise-container">
+            <!-- Gli esercizi verranno inseriti qui dinamicamente -->
+        </div>
+        
+        <button class="complete-workout-button" id="complete-workout-button">
+            Workout Completato
+        </button>
+    </div>
+    
+    <!-- Modal per aggiungere un nuovo esercizio -->
+    <div class="modal" id="add-exercise-modal">
+        <div class="modal-content">
+            <div class="modal-title">Nuovo Esercizio</div>
+            <div class="input-container">
+                <label class="input-label" for="exercise-name">Nome Esercizio:</label>
+                <input type="text" id="exercise-name" class="input-field" placeholder="Es. Panca piana, Curl, Squat...">
+            </div>
+            <div class="input-container">
+                <label class="input-label" for="exercise-sets">Serie:</label>
+                <div class="number-input-container">
+                    <button class="number-button decrease-button" id="decrease-sets">−</button>
+                    <input type="number" id="exercise-sets" class="number-input" value="0" min="0">
+                    <button class="number-button increase-button" id="increase-sets">+</button>
+                </div>
+            </div>
+            <div class="input-container">
+                <label class="input-label" for="exercise-reps">Ripetizioni:</label>
+                <div class="number-input-container">
+                    <button class="number-button decrease-button" id="decrease-reps">−</button>
+                    <input type="number" id="exercise-reps" class="number-input" value="0" min="0">
+                    <button class="number-button increase-button" id="increase-reps">+</button>
+                </div>
+            </div>
+            <div class="input-container">
+                <label class="input-label" for="exercise-rest">Recupero (secondi):</label>
+                <div class="number-input-container">
+                    <button class="number-button decrease-button" id="decrease-rest">−</button>
+                    <input type="number" id="exercise-rest" class="number-input" value="0" min="0" step="5">
+                    <button class="number-button increase-button" id="increase-rest">+</button>
+                </div>
+            </div>
+            <div class="button-container">
+                <button class="modal-button cancel-button" id="exercise-cancel-button">Annulla</button>
+                <button class="modal-button create-button" id="exercise-create-button">Salva</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal per modificare un esercizio -->
+    <div class="modal" id="edit-exercise-modal">
+        <div class="modal-content">
+            <div class="modal-title">Modifica Esercizio</div>
+            <div class="input-container">
+                <label class="input-label" for="edit-exercise-name">Nome Esercizio:</label>
+                <input type="text" id="edit-exercise-name" class="input-field" placeholder="Es. Panca piana, Curl, Squat...">
+                <input type="hidden" id="edit-exercise-id">
+            </div>
+            <div class="input-container">
+                <label class="input-label" for="edit-exercise-sets">Serie:</label>
+                <div class="number-input-container">
+                    <button class="number-button decrease-button" id="edit-decrease-sets">−</button>
+                    <input type="number" id="edit-exercise-sets" class="number-input" value="0" min="0">
+                    <button class="number-button increase-button" id="edit-increase-sets">+</button>
+                </div>
+            </div>
+            <div class="input-container">
+                <label class="input-label" for="edit-exercise-reps">Ripetizioni:</label>
+                <div class="number-input-container">
+                    <button class="number-button decrease-button" id="edit-decrease-reps">−</button>
+                    <input type="number" id="edit-exercise-reps" class="number-input" value="0" min="0">
+                    <button class="number-button increase-button" id="edit-increase-reps">+</button>
+                </div>
+            </div>
+            <div class="input-container">
+                <label class="input-label" for="edit-exercise-rest">Recupero (secondi):</label>
+                <div class="number-input-container">
+                    <button class="number-button decrease-button" id="edit-decrease-rest">−</button>
+                    <input type="number" id="edit-exercise-rest" class="number-input" value="0" min="0" step="5">
+                    <button class="number-button increase-button" id="edit-increase-rest">+</button>
+                </div>
+            </div>
+            <div class="button-container">
+                <button class="modal-button cancel-button" id="edit-exercise-cancel-button">Annulla</button>
+                <button class="modal-button save-button" id="edit-exercise-save-button">Salva</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Dialog di conferma per eliminazione esercizio -->
+    <div class="confirm-dialog" id="confirm-exercise-dialog">
+        <div class="confirm-content">
+            <div class="confirm-title">Elimina Esercizio</div>
+            <div class="confirm-message">Sei sicuro di voler eliminare questo esercizio? Questa azione non può essere annullata.</div>
+            <input type="hidden" id="delete-exercise-id">
+            <div class="confirm-button-container">
+                <button class="confirm-button confirm-cancel" id="confirm-exercise-cancel">Annulla</button>
+                <button class="confirm-button confirm-delete" id="confirm-exercise-delete">Elimina</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="exercise.js"></script>
+</body>
+</html>

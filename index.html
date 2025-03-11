@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="description" content="GYMBRO - La tua app per il fitness">
+    
+    <title>GYMBRO</title>
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="header safe-area-top">
+            <h1 class="logo">GYMBRO</h1>
+            <div class="add-button" id="add-button">
+                <span>+</span>
+            </div>
+        </div>
+        
+        <h2 class="section-title">
+            Allenamenti
+         </h2>
+        
+        <div class="workout-container" id="workout-container">
+            <div class="workout-card" id="workout-card-1" data-name="Petto">
+                <div class="card-header">
+                    <div class="workout-label">Allenamento</div>
+                    <div class="kebab-menu" data-card-id="workout-card-1">
+                        <div class="kebab-icon">
+                            <div class="kebab-dot"></div>
+                            <div class="kebab-dot"></div>
+                            <div class="kebab-dot"></div>
+                        </div>
+                        <div class="action-menu" id="menu-workout-card-1">
+                            <div class="action-item edit-action" data-card-id="workout-card-1">
+                                Modifica
+                            </div>
+                            <div class="action-item duplicate-action" data-card-id="workout-card-1">
+                                Duplica
+                            </div>
+                            <div class="action-item action-delete delete-action" data-card-id="workout-card-1">
+                                Elimina
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="workout-divider"></div>
+                <div class="workout-type">Petto</div>
+                <div class="arrow-container">
+                    <svg class="arrow" viewBox="0 0 7.5 12.9">
+                        <path d="M 0 0 L 7.5 6.9 L 0 12.9" fill="none" stroke="#8fff46" stroke-width="2" stroke-miterlimit="4" stroke-linecap="butt"></path>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        
+        <div class="history-container">
+            <div class="history-label">
+                Storico
+                <a href="history.html" class="history-link">Vedi tutto</a>
+            </div>
+            <div class="history-content" id="history-preview">Nessuna attività recente</div>
+        </div>
+        
+        <div class="dot-container">
+            <div class="dot active"></div>
+            <div class="dot inactive"></div>
+            <div class="dot inactive"></div>
+        </div>
+    </div>
+    
+    <!-- Overlay per chiudere i menu -->
+    <div class="click-overlay" id="click-overlay"></div>
+    
+    <!-- Modal per aggiungere un nuovo allenamento -->
+    <div class="modal" id="add-modal">
+        <div class="modal-content">
+            <div class="modal-title">Nuovo Allenamento</div>
+            <div class="input-container">
+                <label class="input-label" for="workout-name">Nome Allenamento:</label>
+                <input type="text" id="workout-name" class="input-field" placeholder="Es. Gambe, Braccia, Schiena...">
+            </div>
+            <div class="button-container">
+                <button class="modal-button cancel-button" id="cancel-button">Annulla</button>
+                <button class="modal-button create-button" id="create-button">Crea</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal per modificare un allenamento -->
+    <div class="modal" id="edit-modal">
+        <div class="modal-content">
+            <div class="modal-title">Modifica Allenamento</div>
+            <div class="input-container">
+                <label class="input-label" for="edit-workout-name">Nome Allenamento:</label>
+                <input type="text" id="edit-workout-name" class="input-field" placeholder="Es. Gambe, Braccia, Schiena...">
+                <input type="hidden" id="edit-card-id">
+            </div>
+            <div class="button-container">
+                <button class="modal-button cancel-button" id="edit-cancel-button">Annulla</button>
+                <button class="modal-button save-button" id="save-button">Salva</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Dialog di conferma per eliminazione -->
+    <div class="confirm-dialog" id="confirm-dialog">
+        <div class="confirm-content">
+            <div class="confirm-title">Elimina Allenamento</div>
+            <div class="confirm-message">Sei sicuro di voler eliminare questo allenamento? Questa azione non può essere annullata.</div>
+            <input type="hidden" id="delete-card-id">
+            <div class="confirm-button-container">
+                <button class="confirm-button confirm-cancel" id="confirm-cancel">Annulla</button>
+                <button class="confirm-button confirm-delete" id="confirm-delete">Elimina</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Install prompt -->
+    <div class="install-prompt" id="install-prompt">
+        <div class="install-content">
+            <div class="install-text">
+                <strong>Aggiungi GYMBRO</strong> alla home per un accesso rapido
+            </div>
+            <div class="install-actions">
+                <button class="install-button" id="install-button">Installa</button>
+                <button class="install-dismiss" id="install-dismiss">Più tardi</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
